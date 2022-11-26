@@ -3,15 +3,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV || 'production',
-  entry: './index.js',
+  entry: './client/index.js',
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, './build'),
     filename: 'bundle.js',
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './index.html',
+      template: './client/index.html',
     }),
   ],
   devServer: {
@@ -57,4 +57,7 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+  }
 };
