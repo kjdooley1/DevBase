@@ -10,6 +10,11 @@ router.get('/', friendsController.getUsers, (req, res) => {
   res.status(200).json(res.locals.users);
 });
 
+router.get('/:user/:friend', friendsController.getMessages, (req, res) => {
+  console.log('getting messages');
+  res.status(200).json(res.locals.messages);
+})
+
 // redirect to user router
 // app.use('/:username', userRouter);
 
