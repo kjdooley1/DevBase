@@ -8,15 +8,14 @@ export const addMessageActionCreator = message => ({
   });
 
 //load users
-export const loadUsersActionCreator = () => (
-  fetch('/users')
-  .then(data => data.json())
-  .then({
-    type: types.LOAD_USERS,
-    payload: data
-  })
-
-);
+// export const loadUsersActionCreator = () => (
+//   fetch('/users')
+//   .then(data => data.json())
+//   .then({
+//     type: types.LOAD_USERS,
+//     payload: data
+//   })
+// );
 
 
 //send a message
