@@ -1,10 +1,9 @@
 // globalized state 
-import reducers from "./index";
-import { configureStore } from "redux";
+import reducers from "./reducers/index";
+import { createStore } from "redux";
 
-const store = configureStore (
-    reducers,
-    composeWithDevTools()
+const store = createStore (
+    reducers
 );
 
 export default store;
