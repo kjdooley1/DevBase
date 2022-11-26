@@ -2,7 +2,7 @@
 import reducers from "./index";
 import { configureStore } from "redux";
 
-const store = configureStore(
+const store = configureStore (
     reducers,
     composeWithDevTools()
 );

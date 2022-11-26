@@ -13,7 +13,7 @@ const messageReducer = (state = initialState, action) => {
             const newMessage = {
                 content: '',
                 from: '',
-                to:
+                to: ''
             }
             messageList = state.messageList.slice();
             messageList.push(newMessage);
