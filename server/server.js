@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 const PORT = 3000;
 
-const messageRouter = require('./routes/message');
+// const messageRouter = require('./routes/message');
 
 //handle incoming requests
 app.use(express.json());
