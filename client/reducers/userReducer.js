@@ -1,11 +1,16 @@
 import * as types from '../constants/actionTypes'
 
+const initialState = {
+    users: []
+}
+
 const data = fetch('/users')
 .then(data => data.json())
+.then(users => initialState.users = users)
+.then(() => console.log(initialState.users))
+.catch(err => console.log('error fetching user list'))
 
-const initialState = {
-    users: data
-}
+// console.log(initialState);
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
