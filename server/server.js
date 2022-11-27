@@ -4,6 +4,7 @@ const path = require('path');
 const PORT = 3000;
 
 const usersRouter = require('./routes/users');
+const newsRouter = require('./routes/news');
 const friendsController = require('./controllers/friends-controller');
 
 //handle incoming requests
@@ -20,6 +21,8 @@ app.get('/', (req, res) => {
 
 // sends array of user objects when request to /users endpoint is received
 app.use('/users', usersRouter);
+
+app.use('/news', newsRouter);
 
 //error handler
 app.use((err, req, res, next) => {
