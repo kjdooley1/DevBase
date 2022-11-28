@@ -4,6 +4,7 @@ const path = require('path');
 const PORT = 3000;
 
 const usersRouter = require('./routes/users');
+const newsRouter = require('./routes/news');
 const friendsController = require('./controllers/friends-controller');
 
 //handle incoming requests
@@ -20,6 +21,34 @@ app.get('/', (req, res) => {
 
 // sends array of user objects when request to /users endpoint is received
 app.use('/users', usersRouter);
+
+// send signup html file
+// app.get('/signup', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../client/signup.html'));
+//   });
+
+// create new user
+app.post('/signup', friendsController.createUser, (req, res) => {
+  // redirect user to their homepage
+  // res.redirect('/');
+  console.log('redirect to homepage');
+  res.sendStatus(200);
+});
+
+//login
+app.post('/login', friendsController.verifyUser, (req, res) => {
+  //   res.redirect('/');
+  //  redirect user to homepage on success
+  //   console.log(res.locals.user.length);
+  if (res.locals.user.length === 0) return next({ log: 'invalid login' });
+  res.sendStatus(200);
+});
+
+app.post('/send', friendsController.sendMessage, (req, res) => {
+  res.sendStatus(200);
+});
+
+app.use('/news', newsRouter);
 
 //error handler
 app.use((err, req, res, next) => {
