@@ -4,6 +4,7 @@ const path = require('path');
 const PORT = 3000;
 
 const usersRouter = require('./routes/users');
+const newsRouter = require('./routes/news');
 const friendsController = require('./controllers/friends-controller');
 
 //handle incoming requests
@@ -46,6 +47,8 @@ app.post('/login', friendsController.verifyUser, (req, res) => {
 app.post('/send', friendsController.sendMessage, (req, res) => {
   res.sendStatus(200);
 });
+
+app.use('/news', newsRouter);
 
 //error handler
 app.use((err, req, res, next) => {

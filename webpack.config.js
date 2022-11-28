@@ -8,12 +8,6 @@ module.exports = {
     path: path.resolve(__dirname, './build'),
     filename: 'bundle.js',
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './client/index.html',
-    }),
-  ],
   devServer: {
     hot: true,
     host: 'localhost',
@@ -26,6 +20,11 @@ module.exports = {
       '/': 'http://localhost:3000',
     },
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html',
+    }),
+  ],
   module: {
     rules: [
       {
