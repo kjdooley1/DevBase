@@ -14,7 +14,7 @@ export function FriendsContainer() {
     const toRender = [];
 
     userData.forEach(user => {
-        toRender.push(<User username={user.username} firstname={user.firstName} lastname={user.lastName}/>);
+        toRender.push(<User username={user.username} firstname={user.firstname} lastname={user.lastname}/>);
     });
 
     return (

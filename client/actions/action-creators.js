@@ -21,4 +21,9 @@ export const fetchAllUsers = () => async dispatch => {
   }
 }
 
+//load messages
+export const fetchMessages = () => async dispatch => {
+  const response = await fetch ('')
+}
+
 //send a message
