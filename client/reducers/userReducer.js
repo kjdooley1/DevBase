@@ -4,21 +4,19 @@ const initialState = {
     users: []
 }
 
-const data = fetch('/users')
-.then(data => data.json())
-.then(users => initialState.users = users)
-.then(() => console.log(initialState.users))
-.catch(err => console.log('error fetching user list'))
-
-// console.log(initialState);
+// const testInitialState = {users:[{username: "camkelly",
+// firstName: "Cam",
+// lastName: "Kelly"}]
+// }
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        // case types.LOAD_USERS:
-        //     const users = action.payload;
-        //     return {
-        //         users
-        //     }
+        case types.LOAD_USERS:
+            console.log('in load users case');
+            const users = action.payload;
+            return {
+                users
+            }
         default: {
             return state;
         }

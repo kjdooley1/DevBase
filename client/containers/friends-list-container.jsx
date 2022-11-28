@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import User from "../components/User"
+import { fetchAllUsers } from "../actions/action-creators";
 
 export function FriendsContainer() {
-    const userData = useSelector(state => state.users);
+    const dispatch = useDispatch();
+    useEffect((async () => {
+        const res = await fetchAllUsers()();
+        dispatch(res);
+    }), [])
+
+    const userData = useSelector(state => state.users.users);
     const toRender = [];
-    // console.log("userData:", userData)
-    // console.log("userData.users:", userData.users)
-    userData.users.forEach(user => {
-        toRender.push(<User className='user' username={user.username} firstname={user.firstName} lastname={user.lastName}/>)
+
+    userData.forEach(user => {
+        toRender.push(<User username={user.username} firstname={user.firstName} lastname={user.lastName}/>);
     });
+
     return (
         <div>
             {toRender}
