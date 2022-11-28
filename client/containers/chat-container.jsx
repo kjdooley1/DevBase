@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import MessageContainer from './message-container';
 // import * as actions from '../actions'
 const client = new WebSocket('ws://localhost:3002');
+=======
+// import React from "react";
+// import { useSelector, useDispatch } from "react-redux";
+// import * as actions from '../actions'
+>>>>>>> dev
 
 function ChatContainer (props) {
   const [input, setInput] = useState('');
