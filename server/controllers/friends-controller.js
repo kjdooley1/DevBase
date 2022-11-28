@@ -16,6 +16,37 @@ friendsController.getUsers = (req, res, next) => {
     });
 };
 
+friendsController.createUser = (req, res, next) => {
+  const { username, password, firstName, lastName } = req.body;
+  const values = [username, password, firstName, lastName];
+  const CREATE_USER =
+    'INSERT INTO users (username, password, firstName, lastName) VALUES ($1, $2, $3, $4);';
+  console.log('in createUser middleware');
+  db.query(CREATE_USER, values)
+    .then((response) => {
+      return next();
+    })
+    .catch((err) => {
+      return next({ err });
+    });
+};
+
+friendsController.verifyUser = (req, res, next) => {
+  const { username, password } = req.body;
+  const values = [username, password];
+  const VERIFY_USER = 'SELECT * FROM users WHERE username=$1 AND password=$2;';
+  console.log('in verifyUser middleware');
+  // console.log(username, password);
+  db.query(VERIFY_USER, values)
+    .then((response) => {
+      res.locals.user = response.rows;
+      return next();
+    })
+    .catch((err) => {
+      return next({ err });
+    });
+};
+
 friendsController.getMessages = (req, res, next) => {
   //get variables from params
   const { user, friend } = req.params;
@@ -24,12 +55,27 @@ friendsController.getMessages = (req, res, next) => {
   const values = [user, friend];
 
   //set sql query
-  const GET_MESSAGES = 'SELECT * FROM messages WHERE sender=$1 AND receiver=$2 OR sender=$2 AND receiver=$1';
+  const GET_MESSAGES =
+    'SELECT * FROM messages WHERE sender=$1 AND receiver=$2 OR sender=$2 AND receiver=$1';
   console.log('in getMessages middleware');
   db.query(GET_MESSAGES, values)
     .then((data) => {
       console.log('response data', data);
       res.locals.messages = data.rows;
+      return next();
+    })
+    .catch((err) => {
+      return next({ err });
+    });
+};
+
+friendsController.sendMessage = (req, res, next) => {
+  const { sender, receiver, body } = req.body;
+  const values = [sender, receiver, body];
+  const SEND_MESSAGE =
+    'INSERT INTO messages (sender, receiver, body) VALUES ($1, $2, $3);';
+  db.query(SEND_MESSAGE, values)
+    .then((response) => {
       return next();
     })
     .catch((err) => {
