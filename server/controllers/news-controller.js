@@ -16,9 +16,11 @@ newsController.getTopNews = async (req, res, next) => {
 newsController.getArticleURL = async (req, res, next) => {
     const { id } = req.params;
     try {
-      const articleObj = await axios(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`);
+      const response = await axios(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`);
     //   console.log('articleObj: ', articleObj);
-      res.locals.articleURL = articleObj.data.url;
+      const { title, url } = response.data;
+      const articleObj = { title: title, url: url };
+      res.locals.articleObj = articleObj;
     //   console.log('res locals: ', res.locals.articleURL)
       return next();
     }

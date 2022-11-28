@@ -12,7 +12,7 @@ router.get('/', newsController.getTopNews, (req, res) => {
 
 router.get('/:id', newsController.getArticleURL, (req, res) => {
     // console.log('sending article url')
-    res.status(200).json(res.locals.articleURL);
+    res.status(200).json(res.locals.articleObj);
 })
 
 // redirect to user router
