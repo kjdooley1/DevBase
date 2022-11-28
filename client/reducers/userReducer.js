@@ -1,22 +1,19 @@
 import * as types from '../constants/actionTypes'
 
-const initialState = {
-    users: []
-}
+const data = fetch('/users')
+.then(data => data.json())
 
-// const testInitialState = {users:[{username: "camkelly",
-// firstName: "Cam",
-// lastName: "Kelly"}]
-// }
+const initialState = {
+    users: data
+}
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case types.LOAD_USERS:
-            console.log('in load users case');
-            const users = action.payload;
-            return {
-                users
-            }
+        // case types.LOAD_USERS:
+        //     const users = action.payload;
+        //     return {
+        //         users
+        //     }
         default: {
             return state;
         }

@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import App from "./App"
 import React from "react";
 import { render } from "react-dom";
-// import { loadUsersActionCreator } from "./actions/action-creators";
+import { loadUsersActionCreator } from "./actions/actions";
 
 render (
     <Provider store = {store}>
@@ -11,3 +11,4 @@ render (
     </Provider>,
     document.getElementById('root')
 )
+
