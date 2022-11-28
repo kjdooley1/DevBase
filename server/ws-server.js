@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 console.log('running ws server');
+const axios = require('axios');
 
 //importing ws library
 const ws = require('ws');
@@ -13,18 +14,19 @@ wsServer.on('connection', (socket) => {
   // console.log('wsServer: ', wsServer )
   socket.on('message', (message) => {
     // message = message.json();
-    console.log('message: %s', message);
+    // console.log('message: %s', message);
     const parsedMessage = JSON.parse(message);
-    console.log('user %s', parsedMessage.username);
-    console.log('message %s', parsedMessage.message);
+    console.log('parsedMessage in wsServer %s', parsedMessage);
+    // console.log('message %s', parsedMessage.body);
     wsServer.clients.forEach((client) => client.send(message.toString()));
-    // addMessage(parsedMessage);
+    addMessage(parsedMessage);
   });
 });
 
-// function addMessage(messageObj) {
-
-// }
+async function addMessage(messageObj) {
+  console.log('adding message');
+  await axios.post('http://localhost:3000/send', messageObj);
+}
 
 //to handle parsing the request body
 app.use(express.json());

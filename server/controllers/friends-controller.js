@@ -7,7 +7,7 @@ friendsController.getUsers = (req, res, next) => {
   console.log('in getUsers middleware');
   db.query(GET_USERS)
     .then((data) => {
-      console.log('response data', data);
+      // console.log('response data', data);
       res.locals.users = data.rows;
       return next();
     })
@@ -70,7 +70,9 @@ friendsController.getMessages = (req, res, next) => {
 };
 
 friendsController.sendMessage = (req, res, next) => {
+  console.log('in sendMessage, req.body =', req.body);
   const { sender, receiver, body } = req.body;
+  console.log('request sender', sender);
   const values = [sender, receiver, body];
   const SEND_MESSAGE =
     'INSERT INTO messages (sender, receiver, body) VALUES ($1, $2, $3);';
@@ -79,6 +81,7 @@ friendsController.sendMessage = (req, res, next) => {
       return next();
     })
     .catch((err) => {
+      console.log('caught error in sendMessage');
       return next({ err });
     });
 };
