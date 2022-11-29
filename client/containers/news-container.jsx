@@ -6,7 +6,7 @@ export function NewsContainer() {
     const newsData = useSelector(state => state.news);
     const toRender = [];
     return (
-        <div>
+        <div className='news-container'>
             {toRender}
         </div>
     )
