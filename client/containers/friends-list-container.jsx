@@ -18,7 +18,7 @@ export function FriendsContainer() {
     });
 
     return (
-        <div>
+        <div className='friends-list-container'>
             {toRender}
         </div>
     )

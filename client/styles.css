@@ -1,12 +1,31 @@
-.homepageContainer {
+/* .homepageContainer {
     border: 3px;
     background-color: blue;
-}
+} */
 
 body {
-    border: 5px;
+    /* border: 5px; */
+    background-color:lavender;
 }
 
-#friendsContainer {
+/* #friendsContainer {
     background-color: salmon;
-}
+} */
+
+.container {
+    height: 100vh;
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "nav-bar nav-bar nav-bar nav-bar"
+      "friends-list-container chat-container chat-container news-container"
+      "friends-list-container chat-container chat-container news-container"
+      "friends-list-container chat-container chat-container news-container"
+      "friends-list-container chat-container chat-container news-container"; 
+  }
+  .nav-bar { grid-area: nav-bar; border: solid; color: grey}
+  .friends-list-container { grid-area: friends-list-container; border: solid; }
+  .chat-container { grid-area: chat-container; border: solid; }
+  .news-container { grid-area: news-container; border: solid; }

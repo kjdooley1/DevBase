@@ -4,6 +4,7 @@ import App from "./App"
 import React from "react";
 import { render } from "react-dom";
 // import { loadUsersActionCreator } from "./actions/action-creators";
+import styles from './styles.css'
 
 render (
     <Provider store = {store}>
