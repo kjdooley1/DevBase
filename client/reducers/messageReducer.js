@@ -1,25 +1,31 @@
-import * as types from '../constants/actionTypes'
+import * as types from '../constants/actionTypes';
 
 const initialState = {
-    messageList: []
-}
+  messageList: [],
+};
 
 const messageReducer = (state = initialState, action) => {
-    let messageList;
-    switch (action.type) {
-        case types.ADD_MESSAGE:
-            const newMessage = {
-                content: '',
-                from: '',
-                to: ''
-            }
-            messageList = state.messageList.slice();
-            messageList.push(newMessage);
-            return {
-                messageList
-            }
-        default: return state;
-    }
-}
+  let messageList;
+  switch (action.type) {
+    case types.LOAD_MESSAGES:
+      const messageList = action.payload;
+      return {
+        messageList,
+      };
+    case types.ADD_MESSAGE:
+      const newMessage = {
+        content: '',
+        from: '',
+        to: '',
+      };
+      messageList = state.messageList.slice();
+      messageList.push(newMessage);
+      return {
+        messageList,
+      };
+    default:
+      return state;
+  }
+};
 
 export default messageReducer;
